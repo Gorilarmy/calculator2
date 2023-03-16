@@ -122,7 +122,50 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, oth
     music.play(music.createSong(hex`0078000408020102001c000c960064006d019001000478002c010000640032000000000a0600050600000004000120`), music.PlaybackMode.UntilDone)
 })
 function Final () {
-    game.gameOver(true)
+    tiles.setCurrentTilemap(tilemap`level3`)
+    controller.moveSprite(ZelLink, 0, 0)
+    for (let index = 0; index < 10; index++) {
+        Cat = sprites.create(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . 4 . . . 
+            . . . . . . 4 . . 3 . . . 4 . . 
+            . . . . 4 4 4 4 4 3 4 4 . 4 . . 
+            . . . . f 4 4 3 3 3 3 4 4 . . . 
+            . . . . 4 4 3 3 3 4 3 3 . . . . 
+            . . . 3 3 3 3 3 . 3 3 3 3 3 . . 
+            . . . . . 3 3 3 3 3 3 3 3 3 3 3 
+            . . . . . . . 3 3 3 3 3 3 3 3 3 
+            . 3 3 3 3 3 3 3 3 . 3 3 3 . . . 
+            . 3 3 . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, SpriteKind.StatusBar)
+        Cat.setPosition(randint(90, 130), randint(20, 30))
+    }
+    my_enemy = sprites.create(assets.image`myImage`, SpriteKind.StatusBar)
+    my_enemy.setPosition(100, 60)
+    ZelLink.setPosition(100, 90)
+    Te_voy_a_rajar = sprites.create(assets.image`myImage0`, SpriteKind.StatusBar)
+    Te_voy_a_rajar.setPosition(110, 90)
+    Alcantarisha = sprites.create(assets.image`myImage1`, SpriteKind.StatusBar)
+    Alcantarisha.setPosition(90, 90)
+    pause(2000)
+    ZelLink.sayText("Well.... that was easy", 5000, false)
+    pause(5000)
+    ZelLink.sayText("Wait........ what is this?", 5000, false)
+    pause(5000)
+    ZelLink.sayText("A calculator?", 5000, false)
+    pause(5000)
+    ZelLink.sayText("Mmmmmmmmm this could be fun", 5000, false)
+    pause(5000)
+    ZelLink.sayText("\"Welcome you are in the lands of calculator\"", 5000, false)
+    pause(5000)
+    ZelLink.sayText("\"where the numbers are your enemies or your friends........\"", 5000, false)
+    pause(7000)
+    game.gameOver(false)
 }
 info.onCountdownEnd(function () {
     sprites.destroy(RASHO_LASHER, effects.disintegrate, 1000)
@@ -243,6 +286,10 @@ let Miau: Sprite = null
 let Morbius20: Sprite = null
 let Morbius: Sprite = null
 let RASHO_LASHER: Sprite = null
+let Alcantarisha: Sprite = null
+let Te_voy_a_rajar: Sprite = null
+let my_enemy: Sprite = null
+let Cat: Sprite = null
 let fium: Sprite = null
 let Cock_blast: Sprite = null
 let MorbiusHp: StatusBarSprite = null
