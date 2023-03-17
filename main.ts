@@ -238,6 +238,10 @@ statusbars.onZero(StatusBarKind.EnemyHealth, function (status) {
 scene.onHitWall(SpriteKind.Arrow, function (sprite, location) {
     sprites.destroy(sprite, effects.disintegrate, 100)
 })
+sprites.onOverlap(SpriteKind.Blast, SpriteKind.Protect, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite, effects.bubbles, 500)
+    music.play(music.melodyPlayable(music.zapped), music.PlaybackMode.UntilDone)
+})
 info.onScore(10, function () {
     Le_go = 0
     tiles.setCurrentTilemap(tilemap`level6`)
@@ -459,8 +463,8 @@ ZelLink = sprites.create(img`
     . . . . . 7 . 7 . 7 . . . . . . 
     . . . . . d . 7 f d f . . . . . 
     . . . . . . . 7 b f b . . . . . 
-    . . . . . . . 7 . b . . . . . . 
-    . . . . . . . 7 . b . . . . . . 
+    . . . . . . 7 . 7 b . . . . . . 
+    . . . . . . 7 . 7 b . . . . . . 
     `, SpriteKind.Player)
 tiles.placeOnRandomTile(ZelLink, sprites.dungeon.stairNorth)
 scene.cameraFollowSprite(ZelLink)
@@ -560,8 +564,8 @@ forever(function () {
             . . . . . 7 . 7 . 7 . . . . . . 
             . . . . f d f 7 . d . . . . . . 
             . . . . b f b 7 . . . . . . . . 
-            . . . . . b . 7 . . . . . . . . 
-            . . . . . b . 7 . . . . . . . . 
+            . . . . . b 7 . 7 . . . . . . . 
+            . . . . . b 7 . 7 . . . . . . . 
             `)
     } else if (controller.down.isPressed()) {
         ZelLink.setImage(img`
@@ -579,8 +583,8 @@ forever(function () {
             . . . . . 7 . 7 . 7 . . . . . . 
             . . . . . d . 7 f d f . . . . . 
             . . . . . . . 7 b f b . . . . . 
-            . . . . . . . 7 . b . . . . . . 
-            . . . . . . . 7 . b . . . . . . 
+            . . . . . . 7 . 7 b . . . . . . 
+            . . . . . . 7 . 7 b . . . . . . 
             `)
     }
     if (controller.right.isPressed()) {
